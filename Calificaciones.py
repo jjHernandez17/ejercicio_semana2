@@ -37,7 +37,8 @@ while wile_agregar_estudiante_menu:
     while wile_volver_menu:
         print("---"*30)
         menu = int(input("--Que desea hacer-- \n(1) Ingresar otro estudiante \n(2) Asignar notas a estudiante \n"
-        "(3) Buscar esudiante \n(4) Listar estudiantes y mostrar notas\n(5) Sacar promedio de estudiante/s\n(6) Eliminar estudiante o nota de estudiante\n "))
+        "(3) Buscar esudiante \n(4) Listar estudiantes y mostrar notas\n(5) Sacar promedio de estudiante/s\n(6) Eliminar estudiante o nota de estudiante\n"
+        "(7) Ingresar un valor y contar cuantas calificaciones son mayores a este valor "))
         print ("---"*30)
         wile_agregar_estudiante_menu = True                
         if menu == 1:                                       
@@ -223,5 +224,40 @@ while wile_agregar_estudiante_menu:
                         valor_o_caracter_no_valido = False
                 except ValueError:
                     print("No se pueden ingresar letras")
+
+        elif menu == 7:
+            num_mayor = True
+            while num_mayor:
+                lista_mayor = []
+                estu_cal_mayor = input("Ingrese el estudiante al cual desea ver las calificaciones mayores que su numero: \n")
+                cali_mayor = int(input("Ingrese una calificacion para ver cuantas calificaciones de la lista\n" \
+                "son mayores a esta: \n"))  
+                lista_not_mayor = estudiantes.get(estu_cal_mayor)
+                print(lista_not_mayor)
+                for n in lista_not_mayor:
+                    if n>cali_mayor:
+                        lista_mayor.append(n)
+                        cantidad_mayores = len(lista_mayor)
+                    
+                print (f"lista de notas mayores a su numero \n {lista_mayor}")
+                print(f"La cantidad de notas mayores a su numero es: {cantidad_mayores}")
+                res_inco = True
+                while res_inco:
+                    volver_num_may = input("Desea volver a escribir otro numero para comparar? (si/no) \n")
+                    if volver_num_may == "si":
+                        print("")
+                        res_inco = False
+                    elif volver_num_may == "no":
+                        num_mayor = False
+                        res_inco = False
+                    else: 
+                        print("Respuesta incorrecta, intentelo de nuevo")
+
+                
+
+
+                    
+
+                
 
     
