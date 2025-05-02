@@ -156,57 +156,72 @@ while wile_agregar_estudiante_menu:
 
 
         elif menu == 6:
-            menu_opcion_6 = int(input("--Que desea hacer?-- \n(1)  Eliminar una nota especifica de un estudiante \n(2) Eliminar estudiante por completo \n(3) volver al menù \n"))
-            if menu_opcion_6 == 1:
-                volver_eliminar_nota = True
-                el_estudiante = input("Ingrese el nombre del estudiante al que lequiere eliminar nota: \n")
-                el_lista_estu = estudiantes.get(el_estudiante)
-                while volver_eliminar_nota:
-                    print(el_lista_estu) 
-                    cant_notas = len(el_lista_estu)
-                    indice = list(range(1,cant_notas+1))
-                    for n in indice:
-                        print(f" {n}  ", end='')
-                    indice_elim = int(input("\nIndique la nota que desea eliminar segun el indice que aparece abajo de esta"))
-                    not_eliminada = el_lista_estu.pop(indice_elim - 1)
-                    print(f"{not_eliminada} se borrò de la lista de notas, La lista de {el_estudiante} quedò: ")
-                    print( el_lista_estu)
-                    respuesta_no_valida2 = True
-                    while respuesta_no_valida2:
-                        pregunt_volver_eliminar_nota = input(f"Desea eliminar otra nota de {el_estudiante}? ")
-                        if pregunt_volver_eliminar_nota == "si":
-                            print("")
-                            respuesta_no_valida2 = False
-                        elif pregunt_volver_eliminar_nota == "no": 
-                            volver_eliminar_nota = False
-                            respuesta_no_valida2 = False
-                        else: 
-                            print("Respuesta no valida, intentelo de nuevo ")
-            
+            valor_o_caracter_no_valido = True
+            while valor_o_caracter_no_valido:
+                try:
+                    menu_opcion_6 = int(input("--Que desea hacer?-- \n(1)  Eliminar una nota especifica de un estudiante \n(2) Eliminar estudiante por completo \n(3) volver al menù \n"))
+                    if menu_opcion_6 == 1:
+                        volver_eliminar_nota = True
+                        el_estudiante = input("Ingrese el nombre del estudiante al que lequiere eliminar nota: \n")
+                        el_lista_estu = estudiantes.get(el_estudiante)
+                        while volver_eliminar_nota:
+                            print(el_lista_estu) 
+                            cant_notas = len(el_lista_estu)
+                            indice = list(range(1,cant_notas+1))
+                            for n in indice:
+                                print(f" {n}  ", end='')
+                            indice_elim = int(input("\nIndique la nota que desea eliminar segun el indice que aparece abajo de esta"))
+                            not_eliminada = el_lista_estu.pop(indice_elim - 1)
+                            print(f"{not_eliminada} se borrò de la lista de notas, La lista de {el_estudiante} quedò: ")
+                            print( el_lista_estu)
+                            respuesta_no_valida2 = True
+                            while respuesta_no_valida2:
+                                pregunt_volver_eliminar_nota = input(f"Desea eliminar otra nota de {el_estudiante}? ")
+                                if pregunt_volver_eliminar_nota == "si":
+                                    print("")
+                                    respuesta_no_valida2 = False
+                                elif pregunt_volver_eliminar_nota == "no": 
+                                    volver_eliminar_nota = False
+                                    respuesta_no_valida2 = False
+                                    valor_o_caracter_no_valido = False
 
-            elif menu_opcion_6 == 2:
-                eliminar_mas = True
-                while eliminar_mas:
-                    elim_estudiante = input("Digite el nombre del estudiante al cual desea eliminar por completo")
-                    segur_elim =True
-                    while segur_elim:
-                        seguro_elim = input (f"Esta seguro que quiere eliminar a: {elim_estudiante}? (si/no) ")
-                        if seguro_elim == "si":
-                            del estudiantes[elim_estudiante]
-                            print("asì quedò la lista de estudiantes: ")
-                            for nombre, lista_notas in estudiantes.items(): 
-                                mostrar = estudiantes.get(nombre)
-                                print(nombre , mostrar)
-                        elif seguro_elim == "no":
-                            eliminar_mas = False
-                            segur_elim = False
-                        else:
-                            print("Respuesta no valida, intentelo de nuevo ")
-
+                                else: 
+                                    print("Respuesta no valida, intentelo de nuevo ")
                     
 
-                    
+                    elif menu_opcion_6 == 2:
+                        eliminar_mas = True
+                        while eliminar_mas:
+                            elim_estudiante = input("Digite el nombre del estudiante al cual desea eliminar por completo \n")
+                            segur_elim =True
+                            while segur_elim:
+                                seguro_elim = input (f"Esta seguro que quiere eliminar a: {elim_estudiante}? (si/no) \n")
+                                if seguro_elim == "si":
+                                    del estudiantes[elim_estudiante]
+                                    print("asì quedò la lista de estudiantes: ")
+                                    print("---"*30)
+                                    for nombre, lista_notas in estudiantes.items(): 
+                                        mostrar = estudiantes.get(nombre)
+                                        print(nombre , mostrar)
+                                    print("---"*30)
+                                    segur_elim = False
+                                    eliminar_mas = False
+                                    valor_o_caracter_no_valido = False
 
+                                elif seguro_elim == "no":
+                                    eliminar_mas = False
+                                    segur_elim = False
+                                    valor_o_caracter_no_valido = False
+                                else:
+                                    print("Respuesta no valida, intentelo de nuevo ")
+                    elif menu_opcion_6 == 3:
+                        print("")
+                        valor_o_caracter_no_valido = False
 
+                    else:
+                        print("Valor o caracter no valido")
+                        valor_o_caracter_no_valido = False
+                except ValueError:
+                    print("No se pueden ingresar letras")
 
-
+    
