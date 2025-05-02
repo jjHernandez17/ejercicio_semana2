@@ -38,7 +38,7 @@ while wile_agregar_estudiante_menu:
         print("---"*30)
         menu = int(input("--Que desea hacer-- \n(1) Ingresar otro estudiante \n(2) Asignar notas a estudiante \n"
         "(3) Buscar esudiante \n(4) Listar estudiantes y mostrar notas\n(5) Sacar promedio de estudiante/s\n(6) Eliminar estudiante o nota de estudiante\n"
-        "(7) Ingresar un valor y contar cuantas calificaciones son mayores a este valor "))
+        "(7) Ingresar un valor y contar cuantas calificaciones son mayores a este valor \n(8) Contar cuantas veces está una calificacion especifica"))
         print ("---"*30)
         wile_agregar_estudiante_menu = True                
         if menu == 1:                                       
@@ -252,6 +252,39 @@ while wile_agregar_estudiante_menu:
                         res_inco = False
                     else: 
                         print("Respuesta incorrecta, intentelo de nuevo")
+
+        elif menu == 8:
+            buscar_otro = True
+            while buscar_otro:
+                nom_cal_especifica = input("Ingrese el nombre del estudiante al que quiere ver cuantas veces esta la calificacion en su lista de notas \n")
+                lista_cal_especifi = estudiantes.get(nom_cal_especifica)
+                no_aparece = True
+                while no_aparece:
+                    calificacion_especifica = int(input(f"Ingrese la calificacion que desea buscar en la lista de: {nom_cal_especifica} \n"))
+                    if calificacion_especifica in lista_cal_especifi:
+                        veces_que_aparece = lista_cal_especifi.count(calificacion_especifica)
+                        print(f"La nota {calificacion_especifica} en las notas de {nom_cal_especifica} aparecen: {veces_que_aparece} veces")
+                        print(lista_cal_especifi)
+
+                        respuesta_no_valida3 = True
+                        while respuesta_no_valida3:
+                            otra_nota_especi = input("Desea buscar otra nota? (si/no)")
+
+                            if otra_nota_especi =="si":      
+                                no_aparece = False
+                                respuesta_no_valida3 = False
+
+                            elif otra_nota_especi == "no":
+                                no_aparece = False
+                                buscar_otro = False
+                                respuesta_no_valida3 = False
+
+                            else:
+                                print("Esa respuesta no es valida, intentelo de nuevo ")
+
+                    else:
+                        print("Esa nota no aparece, intentelo de nuevo")
+                        print("---"*30)
 
                 
 
