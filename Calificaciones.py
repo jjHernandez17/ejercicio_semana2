@@ -1,10 +1,10 @@
-estudiantes = { }                                #se crea eldiccionario vacìo 
-wile_agregar_estudiante_menu = True                                  #se crea el while por si el usuario desea agregar estudiante desde el menù
-nota = int                                                #se define la variable nota como un entero
+estudiantes = { }                                
+wile_agregar_estudiante_menu = True                                  
+nota = int                                                
 lista_notas = []  
-                                        #se crea la lista que almacena las notas 
+                                        
 while wile_agregar_estudiante_menu:         
-    wile_seguir_agregando_estudiante = True                          #se crea el while para seguir agregando estudiantes apenas haya creado el anterior
+    wile_seguir_agregando_estudiante = True                          
     while wile_seguir_agregando_estudiante:
         estudiante_repetido = True
         while estudiante_repetido:
@@ -33,7 +33,7 @@ while wile_agregar_estudiante_menu:
             else: 
                 print("respuesta no valida, intentelo de nuevo ")
     
-    wile_volver_menu = True                                     #se crea el while por si el usuario desea volver al menu
+    wile_volver_menu = True                                     
     while wile_volver_menu:
         print("---"*30)
         menu = int(input("--Que desea hacer-- \n(1) Ingresar otro estudiante \n(2) Asignar notas a estudiante \n"
@@ -55,23 +55,24 @@ while wile_agregar_estudiante_menu:
                         print("---"*30)
                     elif nombre_buscar in estudiantes:
                         nombre_no_encontrado = False
-                valores_nombre = estudiantes.get(nombre_buscar)         #en la variable valores nombre se guarda los valores que tiene cada estudiante en especifico(.get)      
-                print(nombre_buscar,valores_nombre)                     #se imprime el estudiante que buscò y la lista de notas
-                ingresar_mas_notas_while = True                         #se crea el while que permite y pregunta si desea ingresar mas notas para ese estudiante
+                valores_nombre = estudiantes.get(nombre_buscar)               
+                print(nombre_buscar,valores_nombre)                     
+                ingresar_mas_notas_while = True                         
                 while ingresar_mas_notas_while:
-
-                    nota_no_valida = True
-                    while nota_no_valida:
+                    notas_input_validas = False
+                    while not notas_input_validas:
+                        notas_input = input("Ingrese las notas del estudiante separadas por comas y sin espacios por favor: \n")
                         try:
-                            nota = int(input("Ingrese la nota del estudiante \n"))
+                            notas_lista = [int(nota.strip()) for nota in notas_input.split(',')]
+                            if all(0 <= nota <= 100 for nota in notas_lista):
+                                estudiantes[nombre_buscar].extend(notas_lista)
+                                notas_input_validas = True
+                            else:
+                                print("Todas las notas deben estar entre 0 y 100, Inténtelo de nuevo")
                         except ValueError:
-                            print("No se permite ingresar letras")  
-                        if nota<0 or nota>100:
-                            print("esa nota no es valida, intentelo de nuevo")
-                        else: 
-                            nota_no_valida = False
-                    estudiantes[nombre_buscar].append(nota)             #esto guarda la nota que ingresò en el estudiante en especìfico en su propia lista de notas
-                    valores_nombre = estudiantes.get(nombre_buscar)     #nuevamente trae a la variable valores nombre la lista de notas de el estudiante para poder imprimirlas
+                            print("Asegúrese de ingresar solo números separados por comas.")
+
+                    valores_nombre = estudiantes.get(nombre_buscar)     
                     print(nombre_buscar,valores_nombre)
                     ingresar_mas_notas_no_valida = True
                     while ingresar_mas_notas_no_valida:
