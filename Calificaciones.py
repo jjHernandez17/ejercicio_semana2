@@ -1,31 +1,31 @@
-estudiantes = { }                                
+estudiantes = { }                                           # Se crea el diccionario vacío para ingresar como key estudiante                       
 wile_agregar_estudiante_menu = True                                  
-nota = int                                                
-lista_notas = []  
+nota = int                                                  #se define nota como un entero                                           
+lista_notas = []                                                #se crea la lista vacía para las notas 
                                         
-while wile_agregar_estudiante_menu:         
+while wile_agregar_estudiante_menu:                     #while para devolverse a ingresar otro estudiante 
     wile_seguir_agregando_estudiante = True                          
-    while wile_seguir_agregando_estudiante:
+    while wile_seguir_agregando_estudiante:             #se crea el while para seguir agregando estudiante
         estudiante_repetido = True
-        while estudiante_repetido:
+        while estudiante_repetido:                      #se crea el while por si el estudiante ya estaba en la lista
             estudiante = input("ingrese el nombre completo del estudiante: \n")   
                                                                 
-            if estudiante in estudiantes:
+            if estudiante in estudiantes:           #se crea la condicion para ver si ya estaba el estudiante en la lista
                 print("Este estudiante ya se encuentra en la lista, si hay dos estudiantes con el mismo nombre, \ningresale a uno algo que lo distinga")       
             else: 
-                estudiantes[estudiante] =  [] 
+                estudiantes[estudiante] =  []                   #si el estudiante no estaba en la lista, se agrega el nombre del estudiante como key y se indica que su valor es una lista vacía por el momento
                 estudiante_repetido = False
-        for nombre, lista_notas in estudiantes.items():                                   
+        for nombre, lista_notas in estudiantes.items():                 #se recorre el diccionario y su lista luego se imprime                  
             print(f"{nombre}: {[]}")                                                          
         wile_respuesta_no_valida_seguir_agregando_estudiantes = True                           
-        while wile_respuesta_no_valida_seguir_agregando_estudiantes:
+        while wile_respuesta_no_valida_seguir_agregando_estudiantes:                    #se crea el while por si la respuesta de seguir agregando estudiantes no es valida
         
-            agregar_estudiante = input("desea seguir agregando estudiantes? (si/no)\n")
+            agregar_estudiante = input("desea seguir agregando estudiantes? (si/no)\n")         
             
-            if agregar_estudiante == "si":
+            if agregar_estudiante == "si":                  #si desea seguir agregando estudiantes hacer:
                 print("")
                 wile_respuesta_no_valida_seguir_agregando_estudiantes = False
-            elif agregar_estudiante == "no":
+            elif agregar_estudiante == "no":                #si no desea seguir agregando notas hacer: 
                 print("Estudiante/s agregado/s con exito ")
                 wile_respuesta_no_valida_seguir_agregando_estudiantes = False
                 wile_agregar_estudiante_menu = False
@@ -34,35 +34,35 @@ while wile_agregar_estudiante_menu:
                 print("respuesta no valida, intentelo de nuevo ")
     
     wile_volver_menu = True                                     
-    while wile_volver_menu:
+    while wile_volver_menu:                                 #se crea el while para volver al menu
         print("---"*30)
         menu = int(input("--Que desea hacer-- \n(1) Ingresar otro estudiante \n(2) Asignar notas a estudiante \n"
         "(3) Buscar esudiante \n(4) Listar estudiantes y mostrar notas\n(5) Sacar promedio de estudiante/s\n(6) Eliminar estudiante o nota de estudiante\n"
         "(7) Ingresar un valor y contar cuantas calificaciones son mayores a este valor \n(8) Contar cuantas veces está una calificacion especifica\n"))
         print ("---"*30)
         wile_agregar_estudiante_menu = True                
-        if menu == 1:                                       
+        if menu == 1:                                               #si la respuesta del menu es 1 se devuelve a crear otro estudiante 
             print("")
             wile_volver_menu = False                       
-        elif menu == 2:                 
+        elif menu == 2:                 #si la respuesta del menu es 2 hacer:
 
             notas_otro_estudiante = True                  
-            while notas_otro_estudiante:  
+            while notas_otro_estudiante:                    #se crea el while por si quiere agregarle notas a otro estudiante diferente 
 
-                nombre_no_encontrado = True   
-                while nombre_no_encontrado: 
+                nombre_no_encontrado = True                     
+                while nombre_no_encontrado:                     #se crea el while por si no se encuentra el nombre en la lista
 
                     nombre_buscar = input("Ingrese el nombre del estudiante para asignarle notas: \n")
-                    if not nombre_buscar in estudiantes:
+                    if not nombre_buscar in estudiantes:            #aca se pone la condicion, si no se encuentra el estudiante volver a preguntar
                         print("estudiante no encontrado o mal escrito, intentelo de nuevo")
                         print("---"*30)
-                    elif nombre_buscar in estudiantes:
+                    elif nombre_buscar in estudiantes:                  #si estudiante esta en el diccionario estudiantes hacer: 
                         nombre_no_encontrado = False
-                valores_nombre = estudiantes.get(nombre_buscar)               
-                print(nombre_buscar,valores_nombre) 
+                valores_nombre = estudiantes.get(nombre_buscar)               #en la variable se almacena la lista de notas que se llama con el .get de un estudiante en especifico
+                print(nombre_buscar,valores_nombre)                             #se imprime el estudiante en especifico y su lista de notas
 
                 ingresar_mas_notas_while = True   
-                while ingresar_mas_notas_while:
+                while ingresar_mas_notas_while:                             #se crea el while por si desea agregarle mas notas al estudiante 
                     notas_input_validas = True
                     while notas_input_validas:
                         notas_input = input("Ingrese las notas del estudiante separadas por comas y sin espacios por favor: \n")
