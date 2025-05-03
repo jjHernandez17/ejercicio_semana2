@@ -38,17 +38,20 @@ while wile_agregar_estudiante_menu:
         print("---"*30)
         menu = int(input("--Que desea hacer-- \n(1) Ingresar otro estudiante \n(2) Asignar notas a estudiante \n"
         "(3) Buscar esudiante \n(4) Listar estudiantes y mostrar notas\n(5) Sacar promedio de estudiante/s\n(6) Eliminar estudiante o nota de estudiante\n"
-        "(7) Ingresar un valor y contar cuantas calificaciones son mayores a este valor \n(8) Contar cuantas veces está una calificacion especifica"))
+        "(7) Ingresar un valor y contar cuantas calificaciones son mayores a este valor \n(8) Contar cuantas veces está una calificacion especifica\n"))
         print ("---"*30)
         wile_agregar_estudiante_menu = True                
         if menu == 1:                                       
             print("")
             wile_volver_menu = False                       
-        elif menu == 2:                                     
+        elif menu == 2:                 
+
             notas_otro_estudiante = True                  
             while notas_otro_estudiante:  
+
                 nombre_no_encontrado = True   
-                while nombre_no_encontrado:               
+                while nombre_no_encontrado: 
+
                     nombre_buscar = input("Ingrese el nombre del estudiante para asignarle notas: \n")
                     if not nombre_buscar in estudiantes:
                         print("estudiante no encontrado o mal escrito, intentelo de nuevo")
@@ -56,17 +59,18 @@ while wile_agregar_estudiante_menu:
                     elif nombre_buscar in estudiantes:
                         nombre_no_encontrado = False
                 valores_nombre = estudiantes.get(nombre_buscar)               
-                print(nombre_buscar,valores_nombre)                     
-                ingresar_mas_notas_while = True                         
+                print(nombre_buscar,valores_nombre) 
+
+                ingresar_mas_notas_while = True   
                 while ingresar_mas_notas_while:
-                    notas_input_validas = False
-                    while not notas_input_validas:
+                    notas_input_validas = True
+                    while notas_input_validas:
                         notas_input = input("Ingrese las notas del estudiante separadas por comas y sin espacios por favor: \n")
                         try:
                             notas_lista = [int(nota.strip()) for nota in notas_input.split(',')]
                             if all(0 <= nota <= 100 for nota in notas_lista):
                                 estudiantes[nombre_buscar].extend(notas_lista)
-                                notas_input_validas = True
+                                notas_input_validas = False
                             else:
                                 print("Todas las notas deben estar entre 0 y 100, Inténtelo de nuevo")
                         except ValueError:
@@ -172,13 +176,13 @@ while wile_agregar_estudiante_menu:
                             indice = list(range(1,cant_notas+1))
                             for n in indice:
                                 print(f" {n}  ", end='')
-                            indice_elim = int(input("\nIndique la nota que desea eliminar segun el indice que aparece abajo de esta"))
+                            indice_elim = int(input("\nIndique la nota que desea eliminar segun el indice que aparece abajo de esta \n"))
                             not_eliminada = el_lista_estu.pop(indice_elim - 1)
                             print(f"{not_eliminada} se borrò de la lista de notas, La lista de {el_estudiante} quedò: ")
                             print( el_lista_estu)
                             respuesta_no_valida2 = True
                             while respuesta_no_valida2:
-                                pregunt_volver_eliminar_nota = input(f"Desea eliminar otra nota de {el_estudiante}? ")
+                                pregunt_volver_eliminar_nota = input(f"Desea eliminar otra nota de {el_estudiante}? (si/no) \n")
                                 if pregunt_volver_eliminar_nota == "si":
                                     print("")
                                     respuesta_no_valida2 = False
@@ -269,7 +273,7 @@ while wile_agregar_estudiante_menu:
 
                         respuesta_no_valida3 = True
                         while respuesta_no_valida3:
-                            otra_nota_especi = input("Desea buscar otra nota? (si/no)")
+                            otra_nota_especi = input("Desea buscar otra nota? (si/no)\n")
 
                             if otra_nota_especi =="si":      
                                 no_aparece = False
